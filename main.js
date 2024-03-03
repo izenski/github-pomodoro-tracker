@@ -1,5 +1,5 @@
 
-let countdown;
+const countdown;
 const timerDisplay = document.querySelector('#timer');
 const startButton = document.querySelector('#start');
 const stopButton = document.querySelector('#stop');
@@ -72,5 +72,6 @@ function fetchIssues(username, repo, token) {
         option.textContent = issue.title;
         issueSelector.appendChild(option);
       });
-    });
+    })
+    .catch(error => console.error('Error during Issue select:', error));
 }
