@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Info Storage</title>
+</head>
+<body>
+    <h1>GitHub Info Storage</h1>
+    <form id="githubForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="repo">Repo:</label><br>
+        <input type="text" id="repo" name="repo"><br>
+        <label for="token">Auth Token:</label><br>
+        <input type="password" id="token" name="token"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+	const githubUsername = localStorage.getItem('githubUsername');
+	const githubRepo = localStorage.getItem('githubRepo');
+	const githubToken = localStorage.getItem('githubToken');
+	
+	if (githubUsername)document.getElementById('username').value=githubUsername;
+	if (githubRepo) document.getElementById('repo').value = githubRepo;
+	if (githubToken) document.getElementById('token').value = githubToken;
+
+        document.getElementById('githubForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const repo = document.getElementById('repo').value;
+            const token = document.getElementById('token').value;
+            localStorage.setItem('githubUsername', username);
+            localStorage.setItem('githubRepo', repo);
+            localStorage.setItem('githubToken', token);
+            alert('GitHub information saved.');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
