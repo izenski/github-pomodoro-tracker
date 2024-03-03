@@ -1,16 +1,23 @@
+
 let countdown;
 const timerDisplay = document.querySelector('#timer');
 const startButton = document.querySelector('#start');
 const stopButton = document.querySelector('#stop');
 const issueSelector = document.querySelector('#issues');
+const username = document.querySelector('#username');
+const repository = document.querySelector('#repository');
 
 const githubUsername = localStorage.getItem('githubUsername');
 const githubRepo = localStorage.getItem('githubRepo');
 const githubToken = localStorage.getItem('githubToken');
 
 if (!githubUsername || !githubRepo || !githubToken) {
-    window.location.href = 'settings.html';
+  // set username, repo, and token values before starting
+  window.location.href = 'settings.html';
 }
+
+username.textContent = `User/Org: ${githubUsername}`;
+repository.textContent = `Repository: ${githubRepo}`;
 
 startButton.addEventListener('click', startTimer);
 stopButton.addEventListener('click', stopTimer);
