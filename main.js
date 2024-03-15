@@ -1,5 +1,5 @@
 
-const countdown;
+let countdown;
 const timerDisplay = document.querySelector('#timer');
 const startButton = document.querySelector('#start');
 const stopButton = document.querySelector('#stop');
@@ -65,11 +65,11 @@ function fetchIssues(username, repo, token) {
   })
     .then(response => response.json())
     .then(issues => {
-      issues.sort((a, b) => a.title.localeCompare(b.title));
+      issues.sort((a, b) => `${a.milestone?.title || ''} ${a.title}`.localeCompare(`${b.milestone?.title || ''} ${b.title}`));
       issues.forEach(issue => {
         const option = document.createElement('option');
         option.value = issue.number;
-        option.textContent = issue.title;
+        option.textContent = `${issue.milestone?.title || ''} - ${issue.title}`;
         issueSelector.appendChild(option);
       });
     })
